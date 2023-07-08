@@ -11,10 +11,10 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>  InternetBloc(InternetInitialState()) ,
+      create: (context) => InternetBloc(InternetInitialState()),
       child: MaterialApp(
         title: 'Flutter Demo',
         home: Home(),
