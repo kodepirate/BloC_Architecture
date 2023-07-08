@@ -1,5 +1,5 @@
-import 'package:bloc_architecture/core/Internet_Bloc.dart';
-import 'package:bloc_architecture/core/Internet_State.dart';
+
+import 'package:bloc_architecture/cubits/internet_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,23 +11,23 @@ class Home extends StatelessWidget {
     return MaterialApp(
         home: Center(
       child:
-          BlocConsumer<InternetBloc, InternetState>(builder: (context, state) {
-        if (state is InternetConnectedState) {
+          BlocConsumer<InternetCubit, InternetState>(builder: (context, state) {
+        if (state == InternetState.Connected) {
           return Text("Internet Connected");
-        } else if (state is InternetDisconnectedState) {
+        } else if (state == InternetState.Disconnected) {
           return Text("Internet Disconnected");
         } else {
           return CircularProgressIndicator();
         }
       }, listener: (context, state) {
-        if (state is InternetConnectedState) {
+        if (state == InternetState.Connected) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text("Internet Connected"),
               backgroundColor: Colors.green,
             ),
           );
-        } else if (state is InternetDisconnectedState) {
+        } else if (state ==  InternetState.Disconnected) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text("Internet Disconnected"),
